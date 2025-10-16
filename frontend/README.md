@@ -32,7 +32,17 @@ npm install
 
 This will download Next.js, React, Tailwind CSS, and all their friends.
 
-### 2. Run the Development Server
+### 2. Set Up Environment Variables (Optional)
+
+For local development, create a `.env.local` file:
+
+```bash
+cp .env.local.example .env.local
+```
+
+The default configuration points to `http://localhost:8000`, which should work for local development. You only need to modify this for production deployment.
+
+### 3. Run the Development Server
 
 Fire up the development server:
 

@@ -54,8 +54,11 @@ export default function Home() {
     setMessages(prev => [...prev, newUserMessage])
     
     try {
+      // Get API URL from environment variable, fallback to localhost for development
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+      
       // Call the backend API
-      const response = await fetch('http://localhost:8000/api/chat', {
+      const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
