@@ -95,6 +95,55 @@ Got everything in place? Let's move on!
 </details>
 
 <details>
+  <summary>⚡ Running the Full Stack Application</summary>
+
+This project consists of two parts: a FastAPI backend and a Next.js frontend. Here's how to run them together:
+
+### Step 1: Start the Backend
+
+1. Open a terminal window and navigate to the project root
+2. Make sure you have your OpenAI API key set:
+   ```bash
+   export OPENAI_API_KEY=sk-your-key-here
+   ```
+3. Start the FastAPI backend:
+   ```bash
+   uv run uvicorn api.app:app --reload
+   ```
+   The backend will run on `http://localhost:8000`
+
+### Step 2: Start the Frontend
+
+1. Open a **new** terminal window and navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies (first time only):
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   The frontend will run on `http://localhost:3000`
+
+### Step 3: Use the Application
+
+1. Open your browser and go to `http://localhost:3000`
+2. Enter your OpenAI API key in the configuration panel
+3. Optionally customize the developer message (system prompt) and model
+4. Start chatting!
+
+> 💡 **Pro Tip**: Keep both terminal windows open while developing. The frontend has hot-reload enabled, so changes appear instantly!
+
+For more detailed instructions:
+- Backend: See `api/README.md`
+- Frontend: See `frontend/README.md`
+
+</details>
+
+<details>
   <summary>🔥Setting Up for Vibe Coding Success </summary>
 
 While it is a bit counter-intuitive to set things up before jumping into vibe-coding - it's important to remember that there exists a gradient betweeen AI-Assisted Development and Vibe-Coding. We're only reaching *slightly* into AI-Assisted Development for this challenge, but it's worth it!
