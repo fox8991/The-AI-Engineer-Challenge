@@ -142,10 +142,9 @@ export default function Home() {
                 onChange={(e) => setModel(e.target.value)}
                 className="w-full px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
               >
-                <option value="gpt-4.1-mini">gpt-4.1-mini</option>
-                <option value="gpt-4o">gpt-4o</option>
-                <option value="gpt-4o-mini">gpt-4o-mini</option>
-                <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                <option value="gpt-4.1-nano">gpt-4.1-nano (fastest)</option>
+                <option value="gpt-4.1-mini">gpt-4.1-mini (balanced)</option>
+                <option value="gpt-4o-mini">gpt-4o-mini (popular)</option>
               </select>
             </div>
             
