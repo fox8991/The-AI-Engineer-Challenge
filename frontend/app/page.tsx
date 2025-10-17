@@ -120,17 +120,18 @@ export default function Home() {
   }
   
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto max-w-5xl p-4 h-screen flex flex-col">
-        {/* Compact Header */}
+        {/* Header with Icon */}
         <div className="mb-3 pt-3">
-          <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
-            OpenAI Chat Interface
+          <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+            <span className="text-3xl">💬</span>
+            <span>OpenAI Chat Interface</span>
           </h1>
         </div>
         
         {/* Configuration Panel - Always Visible */}
-        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-4 mb-3">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 p-4 mb-3">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Model Selection */}
             <div>
@@ -165,7 +166,7 @@ export default function Home() {
         </div>
         
         {/* Chat Messages Area - Maximized Height */}
-        <div className="flex-1 bg-white dark:bg-slate-800 rounded-lg shadow-md p-4 mb-3 overflow-hidden flex flex-col min-h-0">
+        <div className="flex-1 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 p-4 mb-3 overflow-hidden flex flex-col min-h-0">
           <div className="flex justify-between items-center mb-3">
             <h2 className="text-base font-semibold text-slate-800 dark:text-slate-100">
               Conversation
@@ -235,23 +236,30 @@ export default function Home() {
           )}
           
           {/* Message Input Form */}
-          <form onSubmit={handleSubmit} className="flex gap-2">
+          <form onSubmit={handleSubmit} className="flex gap-2 p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-700">
             <input
               type="text"
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
               placeholder="Type your message..."
               disabled={isLoading}
-              className="flex-1 px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 placeholder-slate-400 disabled:opacity-50"
+              className="flex-1 px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 placeholder-slate-400 disabled:opacity-50 shadow-sm"
             />
             <button
               type="submit"
               disabled={isLoading}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium rounded-lg transition-colors disabled:cursor-not-allowed"
+              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-blue-400 disabled:to-blue-400 text-white font-medium rounded-lg transition-all disabled:cursor-not-allowed shadow-md hover:shadow-lg"
             >
               {isLoading ? 'Sending...' : 'Send'}
             </button>
           </form>
+        </div>
+        
+        {/* Footer */}
+        <div className="text-center py-2">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Built with Next.js & FastAPI • Powered by OpenAI
+          </p>
         </div>
       </div>
     </main>
