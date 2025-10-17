@@ -49,11 +49,18 @@ export default function Home() {
     const newUserMessage = { role: 'user', content: userMessage }
     setMessages(prev => [...prev, newUserMessage])
     
+    // Create assistant placeholder IMMEDIATELY (shows typing indicator during cold start)
+    setMessages(prev => [...prev, { role: 'assistant', content: '' }])
+    
+    // Clear input field right away for better UX
+    const currentMessage = userMessage
+    setUserMessage('')
+    
     try {
       // Get API URL from environment variable, fallback to localhost for development
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
       
-      // Call the backend API
+      // Call the backend API (user sees ●●● during this wait)
       const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
@@ -61,7 +68,7 @@ export default function Home() {
         },
         body: JSON.stringify({
           developer_message: developerMessage || 'You are a helpful assistant.',
-          user_message: userMessage,
+          user_message: currentMessage,
           model: model,
         }),
       })
@@ -80,9 +87,6 @@ export default function Home() {
       
       let assistantMessage = ''
       
-      // Create a placeholder for the assistant's response
-      setMessages(prev => [...prev, { role: 'assistant', content: '' }])
-      
       // Read the stream
       while (true) {
         const { done, value } = await reader.read()
@@ -98,9 +102,6 @@ export default function Home() {
           return updated
         })
       }
-      
-      // Clear user message input after successful send
-      setUserMessage('')
       
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
