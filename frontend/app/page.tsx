@@ -8,7 +8,6 @@ import { useState, useRef, useEffect } from 'react'
  */
 export default function Home() {
   // State management for form inputs
-  const [apiKey, setApiKey] = useState('')
   const [developerMessage, setDeveloperMessage] = useState('')
   const [userMessage, setUserMessage] = useState('')
   const [model, setModel] = useState('gpt-4.1-mini')
@@ -37,10 +36,6 @@ export default function Home() {
     e.preventDefault()
     
     // Validation
-    if (!apiKey.trim()) {
-      setError('Please provide an API key')
-      return
-    }
     if (!userMessage.trim()) {
       setError('Please enter a message')
       return
@@ -67,7 +62,6 @@ export default function Home() {
           developer_message: developerMessage || 'You are a helpful assistant.',
           user_message: userMessage,
           model: model,
-          api_key: apiKey,
         }),
       })
       
@@ -144,20 +138,6 @@ export default function Home() {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* API Key Input */}
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                OpenAI API Key *
-              </label>
-              <input
-                type="password"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                placeholder="sk-..."
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 placeholder-slate-400"
-              />
-            </div>
-            
             {/* Model Selection */}
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">

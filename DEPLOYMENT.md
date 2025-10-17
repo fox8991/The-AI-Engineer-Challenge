@@ -115,21 +115,45 @@ This deploys to your production domain. Your app will be live at `https://your-p
    ```
    Or trigger a redeploy from the Vercel dashboard
 
-## 🔐 Important: OpenAI API Keys
+## 🔐 Important: OpenAI API Key Security
 
-**The API key is entered by users in the frontend**, not stored in environment variables. This is by design for security:
+**The API key is stored securely on the backend**, never exposed to the frontend. You need to set your OpenAI API key as an environment variable:
 
-- ✅ Users provide their own OpenAI API keys through the UI
-- ✅ Keys are never stored on the server
-- ✅ Each request includes the user's API key
-- ✅ This prevents your API key from being exposed or rate-limited by multiple users
+### For Local Development
+
+Set the environment variable before starting the backend:
+
+```bash
+export OPENAI_API_KEY=sk-your-actual-key-here
+```
+
+### For Vercel Production
+
+Add the environment variable in Vercel:
+
+1. **Via Vercel Dashboard**:
+   - Go to Project Settings → Environment Variables
+   - Add `OPENAI_API_KEY` with your OpenAI API key
+   - Select all environments (Production, Preview, Development)
+
+2. **Via Vercel CLI**:
+   ```bash
+   vercel env add OPENAI_API_KEY
+   ```
+   Enter your key when prompted
+
+**Security Notes:**
+- ✅ API key is never sent to the browser
+- ✅ Key is stored securely in Vercel's encrypted environment
+- ✅ Users cannot see or extract your API key
+- ⚠️ Your API key will be used by all users (consider rate limits and costs)
 
 ## ✅ Step 4: Verify Your Deployment
 
 1. **Visit your production URL**: `https://your-project-name.vercel.app`
 
 2. **Test the chat interface**:
-   - Enter your OpenAI API key
+   - Choose a model from the dropdown
    - Send a test message
    - Verify streaming responses work
 
@@ -138,6 +162,8 @@ This deploys to your production domain. Your app will be live at `https://your-p
    curl https://your-project-name.vercel.app/api/health
    ```
    Should return: `{"status":"ok"}`
+
+**Important**: Make sure you've set the `OPENAI_API_KEY` environment variable in Vercel, or you'll get a 500 error!
 
 ## 🔄 Continuous Deployment
 

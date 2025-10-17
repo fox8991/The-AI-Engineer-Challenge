@@ -54,16 +54,17 @@ The app will be available at `http://localhost:3000`. Hot reload is enabled, so 
 
 ## Using the Chat Interface
 
-1. **Start the Backend**: Make sure your FastAPI backend is running on port 8000 (see `../api/README.md` for instructions)
+1. **Start the Backend**: Make sure your FastAPI backend is running on port 8000 with the `OPENAI_API_KEY` environment variable set (see `../api/README.md` for instructions)
 
 2. **Open the Frontend**: Navigate to `http://localhost:3000` in your browser
 
 3. **Configure Your Settings**:
-   - **API Key**: Enter your OpenAI API key (it's securely hidden as you type)
    - **Model**: Choose from gpt-4.1-mini, gpt-4o, gpt-4o-mini, or gpt-3.5-turbo
    - **Developer Message**: Optionally customize the system prompt (defaults to "You are a helpful assistant")
 
 4. **Start Chatting**: Type your message and hit Send! Watch as the AI responds in real-time with streaming text.
+
+**Note**: The OpenAI API key is securely stored on the backend and never exposed to the browser.
 
 ## Features at a Glance
 
