@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 /**
  * Main chat interface component
@@ -210,15 +211,23 @@ export default function Home() {
                     <p className="text-sm font-medium mb-1 opacity-75">
                       {message.role === 'user' ? 'You' : 'Assistant'}
                     </p>
-                    <p className="whitespace-pre-wrap">
-                      {message.content || (message.role === 'assistant' && isLoading && index === messages.length - 1 ? (
-                        <span className="inline-flex items-center">
-                          <span className="animate-pulse">●</span>
-                          <span className="animate-pulse animation-delay-200">●</span>
-                          <span className="animate-pulse animation-delay-400">●</span>
-                        </span>
-                      ) : message.content)}
-                    </p>
+                    <div className="prose prose-sm dark:prose-invert max-w-none">
+                      {message.content ? (
+                        message.role === 'assistant' ? (
+                          <ReactMarkdown>{message.content}</ReactMarkdown>
+                        ) : (
+                          <p className="whitespace-pre-wrap">{message.content}</p>
+                        )
+                      ) : (
+                        message.role === 'assistant' && isLoading && index === messages.length - 1 && (
+                          <span className="inline-flex items-center">
+                            <span className="animate-pulse">●</span>
+                            <span className="animate-pulse animation-delay-200">●</span>
+                            <span className="animate-pulse animation-delay-400">●</span>
+                          </span>
+                        )
+                      )}
+                    </div>
                   </div>
                 </div>
               ))
